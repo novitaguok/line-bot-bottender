@@ -2,6 +2,7 @@ const fileType = require('file-type');
 const fs = require('fs');
 
 async function HandleFollow(context) {
+  await context.sendText('Hello!');
   console.log(context.event.follow);
   // {
   //   type: 'user',
@@ -17,17 +18,23 @@ async function HandleUnfollow(context) {
   // }
 }
 
-async function App(context) {
+// async function App(context) {
+//   if (context.event.isFollow) {
+//     return HandleFollow;
+//   }
+//   if (context.event.isUnfollow) {
+//     return HandleUnfollow;
+//   }
+// }
+
+module.exports = async function App(context) {
   if (context.event.isFollow) {
     return HandleFollow;
   }
   if (context.event.isUnfollow) {
     return HandleUnfollow;
   }
-}
 
-module.exports = async function App(context) {
-  // await context.sendText('Welcome to Bottender');
   if (context.event.isText) {
     await context.sendText(`received the text message: ${context.event.text}`);
 
