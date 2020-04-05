@@ -16,7 +16,8 @@
     "file-type": "^14.1.4",
     "fs": "0.0.1-security",
     "jest": "25.2.7",
-    "prettier": "2.0.2"
+    "prettier": "2.0.2",
+    "unirest": "^0.6.0"
   },
   "description": "This project was bootstrapped with [Bottender](https://github.com/Yoctol/bottender) init script.",
   "main": "index.js",

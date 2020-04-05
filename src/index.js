@@ -5,6 +5,36 @@ module.exports = async function App(context) {
   // await context.sendText('Welcome to Bottender');
   if (context.event.isText) {
     await context.sendText(`received the text message: ${context.event.text}`);
+
+    // Text to speech
+    var unirest = require('unirest');
+
+    var req = unirest('GET', 'https://voicerss-text-to-speech.p.rapidapi.com/');
+
+    req.query({
+      r: '2',
+      c: 'mp3',
+      f: '8khz_8bit_mono',
+      src: context.event.text,
+      hl: 'en-us',
+      key: 'fcb29959965b44a6837885911022e7ae',
+    });
+
+    req.headers({
+      'x-rapidapi-host': 'voicerss-text-to-speech.p.rapidapi.com',
+      'x-rapidapi-key': '54ae8d0eeemsh58d84513f7c39dbp199060jsn5fb9173b2278',
+    });
+
+    req.end(function (res) {
+      if (res.error) throw new Error(res.error);
+
+      console.log(res.body);
+    });
+
+    // await context.sendAudio({
+    //   originalContentUrl: 'https://example.com/audio.mp3',
+    //   duration: 240000,
+    // });
   }
 
   if (context.event.isPayload) {
