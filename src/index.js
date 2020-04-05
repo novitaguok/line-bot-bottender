@@ -18,14 +18,22 @@ async function HandleUnfollow(context) {
   // }
 }
 
-// async function App(context) {
-//   if (context.event.isFollow) {
-//     return HandleFollow;
-//   }
-//   if (context.event.isUnfollow) {
-//     return HandleUnfollow;
-//   }
-// }
+async function HandleJoin(context) {
+  await context.sendText('Hello!');
+  console.log(context.event.join);
+  // {
+  //   type: 'group',
+  //   groupId: 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  // }
+}
+
+async function HandleLeave(context) {
+  console.log(context.event.leave);
+  // {
+  //   type: 'group',
+  //   groupId: 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  // }
+}
 
 module.exports = async function App(context) {
   if (context.event.isFollow) {
@@ -33,6 +41,13 @@ module.exports = async function App(context) {
   }
   if (context.event.isUnfollow) {
     return HandleUnfollow;
+  }
+
+  if (context.event.isJoin) {
+    return HandleJoin;
+  }
+  if (context.event.isLeave) {
+    return HandleLeave;
   }
 
   if (context.event.isText) {
