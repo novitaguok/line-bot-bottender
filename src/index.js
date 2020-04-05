@@ -1,6 +1,31 @@
 const fileType = require('file-type');
 const fs = require('fs');
 
+async function HandleFollow(context) {
+  console.log(context.event.follow);
+  // {
+  //   type: 'user',
+  //   userId: 'U206d25c2ea6bd87c17655609a1c37cb8',
+  // }
+}
+
+async function HandleUnfollow(context) {
+  console.log(context.event.unfollow);
+  // {
+  //   type: 'user',
+  //   userId: 'U206d25c2ea6bd87c17655609a1c37cb8',
+  // }
+}
+
+async function App(context) {
+  if (context.event.isFollow) {
+    return HandleFollow;
+  }
+  if (context.event.isUnfollow) {
+    return HandleUnfollow;
+  }
+}
+
 module.exports = async function App(context) {
   // await context.sendText('Welcome to Bottender');
   if (context.event.isText) {
