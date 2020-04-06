@@ -2,7 +2,7 @@ const fileType = require('file-type');
 const fs = require('fs');
 
 async function HandleFollow(context) {
-  await context.sendText('Hello!');
+  await context.sendText('Hello! I am Novibot. ');
   console.log(context.event.follow);
   // {
   //   type: 'user',
@@ -11,6 +11,7 @@ async function HandleFollow(context) {
 }
 
 async function HandleUnfollow(context) {
+  await context.sendText('So sorry, I have to leave ಠ_ಥ');
   console.log(context.event.unfollow);
   // {
   //   type: 'user',
