@@ -2,7 +2,7 @@ const fileType = require('file-type');
 const fs = require('fs');
 
 async function HandleFollow(context) {
-  await context.sendText('Hello! I am Novibot. ');
+  await context.sendText('Hello! I am Novibot. Try to type "Shopping"');
   console.log(context.event.follow);
   // {
   //   type: 'user',
@@ -11,7 +11,6 @@ async function HandleFollow(context) {
 }
 
 async function HandleUnfollow(context) {
-  await context.sendText('So sorry, I have to leave ಠ_ಥ');
   console.log(context.event.unfollow);
   // {
   //   type: 'user',
@@ -29,6 +28,7 @@ async function HandleJoin(context) {
 }
 
 async function HandleLeave(context) {
+  await context.sendText('So sorry, I have to leave ಠ_ಥ');
   console.log(context.event.leave);
   // {
   //   type: 'group',
