@@ -3,6 +3,28 @@ const fs = require('fs');
 
 async function HandleFollow(context) {
   await context.sendText('Hello! I am Novibot. Try to type "Shopping"');
+
+  const quickReply = {
+    items: [
+      {
+        type: 'action',
+        action: {
+          type: 'cameraRoll',
+          label: 'Send photo',
+        },
+      },
+      {
+        type: 'action',
+        action: {
+          type: 'camera',
+          label: 'Open camera',
+        },
+      },
+    ],
+  };
+
+  await context.sendText('hello', { quickReply });
+
   console.log(context.event.follow);
   // {
   //   type: 'user',
@@ -53,26 +75,6 @@ module.exports = async function App(context) {
 
   if (context.event.isText) {
     await context.sendText(`received the text message: ${context.event.text}`);
-
-    const quickReply = {
-      items: [
-        {
-          type: 'action',
-          action: {
-            type: 'cameraRoll',
-            label: 'Send photo',
-          },
-        },
-        {
-          type: 'action',
-          action: {
-            type: 'camera',
-            label: 'Open camera',
-          },
-        },
-      ],
-    };
-    await context.sendText('hello', { quickReply });
   } else if (context.event.isPayload) {
     await context.sendText(`received the payload: ${context.event.payload}`);
   } else if (context.event.isImage) {
