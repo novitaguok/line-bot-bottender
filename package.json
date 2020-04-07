@@ -9,16 +9,22 @@
     "test": "jest"
   },
   "dependencies": {
+    "@bottender/qna-maker": "^1.3.5",
     "bottender": "^1.4.0-alpha.0",
+    "config": "^3.3.1",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.1",
     "eslint-plugin-prettier": "3.1.2",
+    "express": "^4.17.1",
     "file-type": "^14.1.4",
     "fs": "0.0.1-security",
     "googleapis": "^39.2.0",
     "jest": "25.2.7",
+    "mongoose": "^5.9.7",
     "prettier": "2.0.2",
-    "unirest": "^0.6.0"
+    "shortid": "^2.2.15",
+    "unirest": "^0.6.0",
+    "valid-url": "^1.0.9"
   },
   "description": "This project was bootstrapped with [Bottender](https://github.com/Yoctol/bottender) init script.",
   "main": "index.js",

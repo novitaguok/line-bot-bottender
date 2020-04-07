@@ -1,6 +1,54 @@
 const fileType = require('file-type');
 const fs = require('fs');
 
+// URL Shortener Functions
+// const express = require('express');
+// const router = express.Router();
+
+// const Url = require('../models/Url');
+
+// // @route   GET /:code
+// // @desc    Redirect to long/original URL
+// router.get('/:code', async (req, res) => {
+//   try {
+//     const url = await Url.findOne({ urlCode: req.params.code });
+
+//     if (url) {
+//       return res.redirect(url.longUrl);
+//     } else {
+//       return res.status(404).json('No URL found');
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json('Server error');
+//   }
+// });
+
+// module.exports = router;
+
+// QnA Maker
+const { chain } = require('bottender');
+const qnaMaker = require('@bottender/qna-maker');
+
+async function Unknown(context) {
+  await context.sendText('Sorry, I don’t know what you say.');
+}
+
+const QnaMaker = qnaMaker({
+  resourceName: process.env.RESOURCE_NAME,
+  knowledgeBaseId: process.env.KNOWLEDGE_BASE_ID,
+  endpointKey: process.env.ENDPOINT_KEY,
+  scoreThreshold: 70,
+});
+
+module.exports = async function App() {
+  return chain([
+    QnaMaker, //
+    Unknown,
+  ]);
+};
+
+// LINE Functions
 async function HandleFollow(context) {
   const quickReply = {
     items: [
@@ -22,7 +70,7 @@ async function HandleFollow(context) {
   };
 
   await context.sendText(
-    'Hello! I am Novibot. Click on those any button to have fun!',
+    'Hello! I am Novibot. Tap on those any button to have fun!',
     {
       quickReply,
     }
