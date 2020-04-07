@@ -2,8 +2,6 @@ const fileType = require('file-type');
 const fs = require('fs');
 
 async function HandleFollow(context) {
-  await context.sendText('Hello! I am Novibot. Try to type "Shopping"');
-
   const quickReply = {
     items: [
       {
@@ -23,7 +21,12 @@ async function HandleFollow(context) {
     ],
   };
 
-  await context.sendText('hello', { quickReply });
+  await context.sendText(
+    'Hello! I am Novibot. Click on those any button to have fun!',
+    {
+      quickReply,
+    }
+  );
 
   console.log(context.event.follow);
   // {
