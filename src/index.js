@@ -127,11 +127,9 @@ module.exports = async function App(context) {
   if (context.event.isText) {
     return chain([
       await context.sendText(
-        `received the text message: ${context.event.text}`,
-        {
-          quickReply,
-        }
+        `received the text message: ${context.event.text}`
       ),
+      quickReply,
       QnaMaker, //
       Unknown,
     ]);
