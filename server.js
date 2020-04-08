@@ -34,7 +34,7 @@ app.prepare().then(() => {
 
   server.listen(port, (err) => {
     if (err) throw err;
-    console.log(`Running on http://localhost: ${port}`);
+    console.log(`Running on http://localhost:${port}`);
   });
 
   // // For URL Shortener
