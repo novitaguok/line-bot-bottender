@@ -73,8 +73,7 @@ async function HandleFollow(context) {
     'Hello! I am Novibot. Tap on those any button to have fun!',
     {
       quickReply,
-    },
-    QnaMaker
+    }
   );
 
   console.log(context.event.follow);
@@ -128,9 +127,13 @@ module.exports = async function App(context) {
   }
 
   if (context.event.isText) {
-    await context.sendText(`received the text message: ${context.event.text}`, {
-      quickReply,
-    });
+    await context.sendText(
+      `received the text message: ${context.event.text}`,
+      {
+        quickReply,
+      },
+      QnaMaker
+    );
   } else if (context.event.isPayload) {
     await context.sendText(`received the payload: ${context.event.payload}`);
   } else if (context.event.isImage) {
