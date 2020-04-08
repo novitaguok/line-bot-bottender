@@ -49,26 +49,26 @@ const QnaMaker = qnaMaker({
 // };
 
 // LINE Functions
-async function HandleFollow(context) {
-  const quickReply = {
-    items: [
-      {
-        type: 'action',
-        action: {
-          type: 'cameraRoll',
-          label: 'Send photo',
-        },
+const quickReply = {
+  items: [
+    {
+      type: 'action',
+      action: {
+        type: 'cameraRoll',
+        label: 'Send photo',
       },
-      {
-        type: 'action',
-        action: {
-          type: 'camera',
-          label: 'Open camera',
-        },
+    },
+    {
+      type: 'action',
+      action: {
+        type: 'camera',
+        label: 'Open camera',
       },
-    ],
-  };
+    },
+  ],
+};
 
+async function HandleFollow(context) {
   await context.sendText(
     'Hello! I am Novibot. Tap on those any button to have fun!',
     {
