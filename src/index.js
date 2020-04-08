@@ -43,7 +43,7 @@ const QnaMaker = qnaMaker({
 
 // module.exports = async function App() {
 //   return chain([
-//     QnaMaker, //
+//     QnaMaker,
 //     Unknown,
 //   ]);
 // };
@@ -73,7 +73,8 @@ async function HandleFollow(context) {
     'Hello! I am Novibot. Tap on those any button to have fun!',
     {
       quickReply,
-    }
+    },
+    QnaMaker
   );
 
   console.log(context.event.follow);
@@ -113,6 +114,7 @@ module.exports = async function App(context) {
   if (context.event.isFollow) {
     return HandleFollow;
   }
+
   if (context.event.isUnfollow) {
     return HandleUnfollow;
   }
@@ -120,6 +122,7 @@ module.exports = async function App(context) {
   if (context.event.isJoin) {
     return HandleJoin;
   }
+
   if (context.event.isLeave) {
     return HandleLeave;
   }
