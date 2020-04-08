@@ -125,14 +125,9 @@ module.exports = async function App(context) {
   }
 
   if (context.event.isText) {
-    return chain([
-      await context.sendText(
-        `received the text message: ${context.event.text}`,
-        { quickReply }
-      ),
-      QnaMaker, //
-      Unknown,
-    ]);
+    await context.sendText(`received the text message: ${context.event.text}`, {
+      quickReply,
+    });
   } else if (context.event.isPayload) {
     await context.sendText(`received the payload: ${context.event.payload}`);
   } else if (context.event.isImage) {
