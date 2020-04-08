@@ -126,10 +126,10 @@ module.exports = async function App(context) {
 
   if (context.event.isText) {
     await context.sendText(`received the text message: ${context.event.text}`);
-    // return chain([
-    //   QnaMaker, //
-    //   Unknown,
-    // ]);
+    return chain([
+      QnaMaker, //
+      Unknown,
+    ]);
   } else if (context.event.isPayload) {
     await context.sendText(`received the payload: ${context.event.payload}`);
   } else if (context.event.isImage) {
