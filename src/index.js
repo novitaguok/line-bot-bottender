@@ -165,51 +165,42 @@ module.exports = async function App(context) {
   } else if (context.event.isPayload) {
     await context.sendText(`received the payload: ${context.event.payload}`);
   } else if (context.event.isImage) {
-    const buffer = await context.getMessageContent();
-    const { ext } = fileType(buffer);
+    // const buffer = await context.getMessageContent();
+    // const { ext } = fileType(buffer);
+    // const filename = `my-file.${ext}`;
+    // // You can do whatever you want, for example, write buffer into file system
+    // await fs.promises.writeFile(filename, buffer);
 
-    const filename = `my-file.${ext}`;
-
-    // You can do whatever you want, for example, write buffer into file system
-    await fs.promises.writeFile(filename, buffer);
-    await context.sendImage({
-      originalContentUrl: buffer,
-      previewImageUrl: buffer,
-    });
-
-    // let getContent;
-    // if (message.contentProvider.type === 'line') {
-    //   const downloadPath = path.join(
-    //     __dirname,
-    //     'downloaded',
-    //     `${message.id}.jpg`
-    //   );
-    //   const previewPath = path.join(
-    //     __dirname,
-    //     'downloaded',
-    //     `${message.id}-preview.jpg`
-    //   );
-
-    //   getContent = downloadContent(message.id, downloadPath).then(
-    //     (downloadPath) => {
-    //       // ImageMagick is needed here to run 'convert'
-    //       // Please consider about security and performance by yourself
-    //       cp.execSync(
-    //         `convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`
-    //       );
-
-    //       return {
-    //         originalContentUrl:
-    //           baseURL + '/downloaded/' + path.basename(downloadPath),
-    //         previewImageUrl:
-    //           baseURL + '/downloaded/' + path.basename(previewPath),
-    //       };
-    //     }
-    //   );
-    // } else if (message.contentProvider.type === 'external') {
-    //   getContent = Promise.resolve(message.contentProvider);
-    // }
-
+    let getContent;
+    if (message.contentProvider.type === 'line') {
+      const downloadPath = path.join(
+        __dirname,
+        'downloaded',
+        `${message.id}.jpg`
+      );
+      const previewPath = path.join(
+        __dirname,
+        'downloaded',
+        `${message.id}-preview.jpg`
+      );
+      getContent = downloadContent(message.id, downloadPath).then(
+        (downloadPath) => {
+          // ImageMagick is needed here to run 'convert'
+          // Please consider about security and performance by yourself
+          cp.execSync(
+            `convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`
+          );
+          return {
+            originalContentUrl:
+              baseURL + '/downloaded/' + path.basename(downloadPath),
+            previewImageUrl:
+              baseURL + '/downloaded/' + path.basename(previewPath),
+          };
+        }
+      );
+    } else if (message.contentProvider.type === 'external') {
+      getContent = Promise.resolve(message.contentProvider);
+    }
     // await context.sendImage({
     //   originalContentUrl: 'https://example.com/image.jpg',
     //   previewImageUrl: 'https://example.com/preview.jpg',
