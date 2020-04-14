@@ -159,8 +159,7 @@ module.exports = async function App(context) {
     if (context.event.text == 'Hi') {
       await context.sendText('Hi');
       const imagemap = {
-        baseUrl:
-          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fcynthiaannaguir%2Fhello%2F&psig=AOvVaw0_ssG7QCOeQCp650yI-g67&ust=1586958600088000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDS09OH6OgCFQAAAAAdAAAAABAL',
+        baseUrl: 'https://bit.ly/2V8HfOQ',
         baseSize: {
           height: 1040,
           width: 1040,
