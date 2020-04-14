@@ -5,70 +5,70 @@ const express = require('express');
 const router = express.Router();
 
 // URL Shortener
-const validUrl = require('valid-url');
-const shortid = require('shortid');
-const config = require('config');
-const url = require('../models/UrlModel');
+// const validUrl = require('valid-url');
+// const shortid = require('shortid');
+// const config = require('config');
+// const url = require('../models/UrlModel');
 
-// @route POST /api/shorten
-// @desc  create short URL
-// router.post('/shorten', async (req, res) => {
-async function createShortUrl(req, res) {
-  const { longUrl } = req.body;
+// // @route POST /api/shorten
+// // @desc  create short URL
+// // router.post('/shorten', async (req, res) => {
+// async function createShortUrl(req, res) {
+//   const { longUrl } = req.body;
 
-  const baseUrl = config.get('baseUrl');
+//   const baseUrl = config.get('baseUrl');
 
-  // Check base URL
-  if (!validUrl.isUri(baseUrl)) {
-    return res.status(401).json('Invalid Base URL');
-  }
+//   // Check base URL
+//   if (!validUrl.isUri(baseUrl)) {
+//     return res.status(401).json('Invalid Base URL');
+//   }
 
-  // Create URL code
-  const urlCode = shortid.generate();
+//   // Create URL code
+//   const urlCode = shortid.generate();
 
-  // Check long URL
-  if (validUrl.isUri(longUrl)) {
-    try {
-      let url_req = await url.findOne({ longUrl });
-      if (url_req) {
-        res.json(url_req);
-      } else {
-        const shortUrl = baseUrl + '/' + urlCode;
+//   // Check long URL
+//   if (validUrl.isUri(longUrl)) {
+//     try {
+//       let url_req = await url.findOne({ longUrl });
+//       if (url_req) {
+//         res.json(url_req);
+//       } else {
+//         const shortUrl = baseUrl + '/' + urlCode;
 
-        // Save to MongoDB
-        url_req = new UrlModel({
-          longUrl,
-          shortUrl,
-          urlCode,
-          date: new Date(),
-        });
+//         // Save to MongoDB
+//         url_req = new UrlModel({
+//           longUrl,
+//           shortUrl,
+//           urlCode,
+//           date: new Date(),
+//         });
 
-        await url_req.save(); // Save the URL to database
-      }
-    } catch (err) {
-      console.err(err);
-      res.status(500).json('Server error occured');
-    }
-  } else {
-    res.status(401).json('Invalid long URL');
-  }
-}
+//         await url_req.save(); // Save the URL to database
+//       }
+//     } catch (err) {
+//       console.err(err);
+//       res.status(500).json('Server error occured');
+//     }
+//   } else {
+//     res.status(401).json('Invalid long URL');
+//   }
+// }
 
-// Redirect to long URL
-async function redirect(req, res) {
-  try {
-    const url_req = await url.findOne({ urlCode: req.params.code });
+// // Redirect to long URL
+// async function redirect(req, res) {
+//   try {
+//     const url_req = await url.findOne({ urlCode: req.params.code });
 
-    if (url_req) {
-      return res.redirect(url.longUrl);
-    } else {
-      return res.status(404).json('No URL found!');
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json('Server error');
-  }
-}
+//     if (url_req) {
+//       return res.redirect(url.longUrl);
+//     } else {
+//       return res.status(404).json('No URL found!');
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json('Server error');
+//   }
+// }
 
 // LINE Functions
 const quickReply = {
@@ -85,6 +85,13 @@ const quickReply = {
       action: {
         type: 'camera',
         label: 'Open camera',
+      },
+    },
+    {
+      type: 'action',
+      action: {
+        type: 'text',
+        text: 'Url Shortener',
       },
     },
   ],
@@ -149,11 +156,6 @@ module.exports = async function App(context) {
   }
 
   if (context.event.isText) {
-    await context.sendText('Paste your URL ^_^');
-    req = context.event.text;
-    let url = createShortUrl(req, res);
-    await context.sendText(url);
-
     await context.sendText(`received the text message: ${context.event.text}`, {
       quickReply,
     });
