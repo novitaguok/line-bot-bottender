@@ -149,12 +149,11 @@ module.exports = async function App(context) {
   }
 
   if (context.event.isText) {
-    if (context.event.text == 'url') {
-      await context.sendText('Paste your URL ^_^');
-      req = context.event.text;
-      let url = createShortUrl(req, res);
-      await context.sendText(url);
-    }
+    await context.sendText('Paste your URL ^_^');
+    req = context.event.text;
+    let url = createShortUrl(req, res);
+    await context.sendText(url);
+
     await context.sendText(`received the text message: ${context.event.text}`, {
       quickReply,
     });
