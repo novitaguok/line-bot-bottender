@@ -159,7 +159,8 @@ module.exports = async function App(context) {
     if (context.event.text == 'Hi') {
       await context.sendText('Hi');
       const imagemap = {
-        baseUrl: 'https://example.com/bot/images/rm001',
+        baseUrl:
+          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Fhello-sticker&psig=AOvVaw0S_mw43wL23H2gZEZpFYkC&ust=1586964651369000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCAhJSe6OgCFQAAAAAdAAAAABAD',
         baseSize: {
           height: 1040,
           width: 1040,
