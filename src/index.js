@@ -171,40 +171,10 @@ module.exports = async function App(context) {
     // // You can do whatever you want, for example, write buffer into file system
     // await fs.promises.writeFile(filename, buffer);
 
-    let getContent;
-    if (message.contentProvider.type === 'line') {
-      const downloadPath = path.join(
-        __dirname,
-        'downloaded',
-        `${message.id}.jpg`
-      );
-      const previewPath = path.join(
-        __dirname,
-        'downloaded',
-        `${message.id}-preview.jpg`
-      );
-      getContent = downloadContent(message.id, downloadPath).then(
-        (downloadPath) => {
-          // ImageMagick is needed here to run 'convert'
-          // Please consider about security and performance by yourself
-          cp.execSync(
-            `convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`
-          );
-          return {
-            originalContentUrl:
-              baseURL + '/downloaded/' + path.basename(downloadPath),
-            previewImageUrl:
-              baseURL + '/downloaded/' + path.basename(previewPath),
-          };
-        }
-      );
-    } else if (message.contentProvider.type === 'external') {
-      getContent = Promise.resolve(message.contentProvider);
-    }
-    // await context.sendImage({
-    //   originalContentUrl: 'https://example.com/image.jpg',
-    //   previewImageUrl: 'https://example.com/preview.jpg',
-    // });
+    await context.sendImage({
+      originalContentUrl: 'https://example.com/image.jpg',
+      previewImageUrl: 'https://example.com/preview.jpg',
+    });
   } else if (context.event.isVideo) {
     await context.sendVideo({
       originalContentUrl: 'https://example.com/video.mp4',
@@ -215,7 +185,9 @@ module.exports = async function App(context) {
       originalContentUrl: 'https://example.com/audio.mp3',
       duration: 240000,
     });
-  } else if (context.event.text == 'Hi') {
+  }
+
+  if (context.event.text == 'Hi') {
     await context.sendText('Hi');
     const imagemap = {
       baseUrl: 'https://via.placeholder.com/800',
@@ -248,7 +220,9 @@ module.exports = async function App(context) {
     };
     const altText = 'this is an imagemap';
     await context.sendImagemap(altText, imagemap);
-  } else if (context.event.text == 'Shopping') {
+  }
+
+  if (context.event.text == 'Shopping') {
     // const template = {
     //   thumbnailImageUrl: 'https://example.com/bot/images/image.jpg',
     //   title: 'Menu',
