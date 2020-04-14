@@ -160,7 +160,7 @@ module.exports = async function App(context) {
       await context.sendText('Hi');
       const imagemap = {
         baseUrl:
-          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.dk%2Fpin%2F57561701473063649%2F&psig=AOvVaw0fHRs1AnL11pKyyCoQw6Vx&ust=1586957142308000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOCG4JiC6OgCFQAAAAAdAAAAABAS',
+          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fcynthiaannaguir%2Fhello%2F&psig=AOvVaw0_ssG7QCOeQCp650yI-g67&ust=1586958600088000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDS09OH6OgCFQAAAAAdAAAAABAL',
         baseSize: {
           height: 1040,
           width: 1040,
@@ -191,31 +191,6 @@ module.exports = async function App(context) {
       const altText = 'this is an imagemap';
       await context.sendImagemap(altText, imagemap);
     } else if (context.event.text == 'Shopping') {
-      // const template = {
-      //   thumbnailImageUrl: 'https://example.com/bot/images/image.jpg',
-      //   title: 'Menu',
-      //   text: 'Please select',
-      //   actions: [
-      //     {
-      //       type: 'postback',
-      //       label: 'Buy',
-      //       data: 'action=buy&itemid=123',
-      //     },
-      //     {
-      //       type: 'postback',
-      //       label: 'Add to cart',
-      //       data: 'action=add&itemid=123',
-      //     },
-      //     {
-      //       type: 'uri',
-      //       label: 'View detail',
-      //       uri: 'http://example.com/page/123',
-      //     },
-      //   ],
-      // };
-      // const altText = 'this is a button template';
-      // await context.sendButtonTemplate(altText, template);
-
       const template = [
         {
           thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
@@ -264,10 +239,11 @@ module.exports = async function App(context) {
       ];
       const altText = 'this is a carousel template';
       await context.sendCarouselTemplate(altText, template);
+    } else {
+      await context.sendText('Hi! Wanna have fun? Tap on any buttons below', {
+        quickReply,
+      });
     }
-    await context.sendText('Hi! Wanna have fun? Tap on any buttons below', {
-      quickReply,
-    });
     // await context.sendText(`received the text message: ${context.event.text}`, {
     //   quickReply,
     // });
