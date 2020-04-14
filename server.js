@@ -37,13 +37,13 @@ app.prepare().then(() => {
     console.log(`Running on http://localhost:${port}`);
   });
 
-  // // For URL Shortener
-  // const connectDB = require('./config/db');
+  // For URL Shortener
+  const connectDB = require('./config/db');
 
-  // connectDB();
+  connectDB();
 
-  // server.use(express.json({ extended: false }));
+  server.use(express.json({ extended: false }));
 
-  // server.use('/', require('./src/api'));
-  // server.use('/api/url', require('./src/url'));
+  // server.use('/', require('./src/index'));
+  // server.use('/api/url', require('./src/url_shortener'));
 });

@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://novitaguok:07112000novita@cluster0-pqfwq.mongodb.net/test?retryWrites=true&w=majority",
+  "baseUrl": "http://localhost:8000"
+}
