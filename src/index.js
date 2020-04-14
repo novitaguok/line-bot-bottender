@@ -74,7 +74,7 @@ const quickReply = {
     {
       type: 'action',
       action: {
-        type: 'message',
+        type: 'text',
         label: 'Url Shortener',
       },
     },
