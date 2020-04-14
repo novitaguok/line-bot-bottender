@@ -87,14 +87,6 @@ const quickReply = {
         label: 'Open camera',
       },
     },
-    {
-      type: 'action',
-      action: {
-        type: 'uri',
-        label: 'View details',
-        uri: 'http://example.com/page/222',
-      },
-    },
   ],
 };
 
