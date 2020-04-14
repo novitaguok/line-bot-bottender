@@ -156,9 +156,6 @@ module.exports = async function App(context) {
   }
 
   if (context.event.isText) {
-    await context.sendText('Hi! Wanna have fun? Tap on any buttons below', {
-      quickReply,
-    });
     if (context.event.text == 'Hi') {
       await context.sendText('Hi');
       const imagemap = {
@@ -267,6 +264,9 @@ module.exports = async function App(context) {
       const altText = 'this is a carousel template';
       await context.sendCarouselTemplate(altText, template);
     }
+    await context.sendText('Hi! Wanna have fun? Tap on any buttons below', {
+      quickReply,
+    });
     // await context.sendText(`received the text message: ${context.event.text}`, {
     //   quickReply,
     // });
