@@ -167,7 +167,7 @@ module.exports = async function App(context) {
         actions: [
           {
             type: 'uri',
-            linkUri: 'https://www.youtube.com/watch?v=Y66j_BUCBMY',
+            linkUri: 'https://placekitten.com/640/360',
             area: {
               x: 0,
               y: 0,
@@ -192,7 +192,7 @@ module.exports = async function App(context) {
     } else if (context.event.text == 'Shopping') {
       const template = [
         {
-          thumbnailImageUrl: 'https://example.com/bot/images/item1.jpg',
+          thumbnailImageUrl: 'https://placekitten.com/640/360',
           title: 'this is menu',
           text: 'description',
           actions: [
@@ -214,7 +214,7 @@ module.exports = async function App(context) {
           ],
         },
         {
-          thumbnailImageUrl: 'https://example.com/bot/images/item2.jpg',
+          thumbnailImageUrl: 'https://placekitten.com/640/360',
           title: 'this is menu',
           text: 'description',
           actions: [
@@ -236,7 +236,7 @@ module.exports = async function App(context) {
           ],
         },
       ];
-      const altText = 'this is a carousel template';
+      const altText = 'Shop Lists';
       await context.sendCarouselTemplate(altText, template);
     } else {
       await context.sendText('Hi! Wanna have fun? Tap on any buttons below', {
