@@ -88,11 +88,9 @@ const quickReply = {
       },
     },
     {
-      type: 'action',
-      action: {
-        type: 'text',
-        text: 'Url Shortener',
-      },
+      type: 'message',
+      label: 'Yes',
+      text: 'Yes',
     },
   ],
 };
