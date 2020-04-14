@@ -156,23 +156,64 @@ module.exports = async function App(context) {
   }
 
   if (context.event.isText) {
-    await context.sendText(`received the text message: ${context.event.text}`, {
+    await context.sendText('Hi! Wanna have fun? Tap on any buttons below', {
       quickReply,
     });
+    // await context.sendText(`received the text message: ${context.event.text}`, {
+    //   quickReply,
+    // });
   } else if (context.event.isPayload) {
     await context.sendText(`received the payload: ${context.event.payload}`);
   } else if (context.event.isImage) {
+    const buffer = await context.getMessageContent();
+    const { ext } = fileType(buffer);
+
+    const filename = `my-file.${ext}`;
+
+    // You can do whatever you want, for example, write buffer into file system
+    await fs.promises.writeFile(filename, buffer);
     await context.sendImage({
-      originalContentUrl: 'https://example.com/image.jpg',
-      previewImageUrl: 'https://example.com/preview.jpg',
+      originalContentUrl: buffer,
+      previewImageUrl: buffer,
     });
-    // const buffer = await context.getMessageContent();
-    // const { ext } = fileType(buffer);
 
-    // const filename = `my-file.${ext}`;
+    // let getContent;
+    // if (message.contentProvider.type === 'line') {
+    //   const downloadPath = path.join(
+    //     __dirname,
+    //     'downloaded',
+    //     `${message.id}.jpg`
+    //   );
+    //   const previewPath = path.join(
+    //     __dirname,
+    //     'downloaded',
+    //     `${message.id}-preview.jpg`
+    //   );
 
-    // // You can do whatever you want, for example, write buffer into file system
-    // await fs.promises.writeFile(filename, buffer);
+    //   getContent = downloadContent(message.id, downloadPath).then(
+    //     (downloadPath) => {
+    //       // ImageMagick is needed here to run 'convert'
+    //       // Please consider about security and performance by yourself
+    //       cp.execSync(
+    //         `convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`
+    //       );
+
+    //       return {
+    //         originalContentUrl:
+    //           baseURL + '/downloaded/' + path.basename(downloadPath),
+    //         previewImageUrl:
+    //           baseURL + '/downloaded/' + path.basename(previewPath),
+    //       };
+    //     }
+    //   );
+    // } else if (message.contentProvider.type === 'external') {
+    //   getContent = Promise.resolve(message.contentProvider);
+    // }
+
+    // await context.sendImage({
+    //   originalContentUrl: 'https://example.com/image.jpg',
+    //   previewImageUrl: 'https://example.com/preview.jpg',
+    // });
   } else if (context.event.isVideo) {
     await context.sendVideo({
       originalContentUrl: 'https://example.com/video.mp4',
