@@ -94,6 +94,14 @@ const quickReply = {
         label: 'Location',
       },
     },
+    {
+      type: 'action',
+      action: {
+        type: 'message',
+        label: 'Say Hi 🙋‍♀️🙋‍♂️',
+        text: 'Hi',
+      },
+    },
   ],
 };
 
@@ -158,39 +166,6 @@ module.exports = async function App(context) {
   if (context.event.isText) {
     if (context.event.text == 'Hi') {
       await context.sendText('Hi');
-      const imagemap = {
-        baseUrl:
-          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Fhello-sticker&psig=AOvVaw0S_mw43wL23H2gZEZpFYkC&ust=1586964651369000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCAhJSe6OgCFQAAAAAdAAAAABAD',
-        baseSize: {
-          height: 1040,
-          width: 1040,
-        },
-        actions: [
-          {
-            type: 'uri',
-            linkUri:
-              'https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Fhello-sticker&psig=AOvVaw0S_mw43wL23H2gZEZpFYkC&ust=1586964651369000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCAhJSe6OgCFQAAAAAdAAAAABAD',
-            area: {
-              x: 0,
-              y: 0,
-              width: 520,
-              height: 1040,
-            },
-          },
-          {
-            type: 'message',
-            text: 'hello',
-            area: {
-              x: 520,
-              y: 0,
-              width: 520,
-              height: 1040,
-            },
-          },
-        ],
-      };
-      const altText = 'this is an imagemap';
-      await context.sendImagemap(altText, imagemap);
     } else if (context.event.text == 'Shopping') {
       const template = [
         {
