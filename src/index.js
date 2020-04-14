@@ -159,7 +159,8 @@ module.exports = async function App(context) {
     if (context.event.text == 'Hi') {
       await context.sendText('Hi');
       const imagemap = {
-        baseUrl: 'https://via.placeholder.com/800',
+        baseUrl:
+          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.dk%2Fpin%2F57561701473063649%2F&psig=AOvVaw0fHRs1AnL11pKyyCoQw6Vx&ust=1586957142308000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOCG4JiC6OgCFQAAAAAdAAAAABAS',
         baseSize: {
           height: 1040,
           width: 1040,
@@ -167,7 +168,7 @@ module.exports = async function App(context) {
         actions: [
           {
             type: 'uri',
-            linkUri: 'https://placeholder.com/',
+            linkUri: 'https://www.youtube.com/watch?v=Y66j_BUCBMY',
             area: {
               x: 0,
               y: 0,
