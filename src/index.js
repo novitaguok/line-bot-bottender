@@ -159,7 +159,7 @@ module.exports = async function App(context) {
     if (context.event.text == 'Hi') {
       await context.sendText('Hi');
       const imagemap = {
-        baseUrl: 'https://bit.ly/2V8HfOQ',
+        baseUrl: 'https://placekitten.com/640/360',
         baseSize: {
           height: 1040,
           width: 1040,
