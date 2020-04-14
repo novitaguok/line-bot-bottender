@@ -159,7 +159,7 @@ module.exports = async function App(context) {
     if (context.event.text == 'Hi') {
       await context.sendText('Hi');
       const imagemap = {
-        baseUrl: 'https://placekitten.com/640/360',
+        baseUrl: 'https://example.com/bot/images/rm001',
         baseSize: {
           height: 1040,
           width: 1040,
@@ -167,7 +167,8 @@ module.exports = async function App(context) {
         actions: [
           {
             type: 'uri',
-            linkUri: 'https://placekitten.com/640/360',
+            linkUri:
+              'https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Fhello-sticker&psig=AOvVaw0S_mw43wL23H2gZEZpFYkC&ust=1586964651369000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCAhJSe6OgCFQAAAAAdAAAAABAD',
             area: {
               x: 0,
               y: 0,
