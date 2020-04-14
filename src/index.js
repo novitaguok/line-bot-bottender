@@ -170,8 +170,8 @@ module.exports = async function App(context) {
       const template = [
         {
           thumbnailImageUrl: 'https://placekitten.com/640/360',
-          title: 'this is menu',
-          text: 'description',
+          title: 'Kitten 1',
+          text: 'Cute cute',
           actions: [
             {
               type: 'postback',
@@ -192,8 +192,8 @@ module.exports = async function App(context) {
         },
         {
           thumbnailImageUrl: 'https://placekitten.com/640/360',
-          title: 'this is menu',
-          text: 'description',
+          title: 'Kitten 1',
+          text: 'Cute cute',
           actions: [
             {
               type: 'postback',
