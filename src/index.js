@@ -88,10 +88,10 @@ const quickReply = {
       },
     },
     {
-      type: 'message',
+      type: 'action',
       action: {
-        type: 'text',
-        label: 'Url Shortener',
+        type: 'location',
+        label: 'Location',
       },
     },
   ],
