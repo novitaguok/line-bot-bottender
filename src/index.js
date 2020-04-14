@@ -291,6 +291,6 @@ module.exports = async function App(context) {
     const altText = 'this is a carousel template';
     await context.sendCarouselTemplate(altText, template);
   } else {
-    await context.sendText('Sorry, typo eh?');
+    if (context.event.isText) await context.sendText('Sorry, typo eh?');
   }
 };
