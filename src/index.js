@@ -71,20 +71,6 @@ const quickReply = {
         label: 'Open camera',
       },
     },
-    {
-      type: 'action',
-      action: {
-        type: 'text',
-        label: 'Url Shortener',
-      },
-    },
-    {
-      type: 'action',
-      action: {
-        type: 'camera',
-        label: 'Open camera',
-      },
-    },
   ],
 };
 
