@@ -13,7 +13,7 @@ const url = require('../models/UrlModel');
 // @route POST /api/shorten
 // @desc  create short URL
 // router.post('/shorten', async (req, res) => {
-async function createShortUrl() {
+async function createShortUrl(req, res) {
   const { longUrl } = req.body;
 
   const baseUrl = config.get('baseUrl');
@@ -54,6 +54,22 @@ async function createShortUrl() {
   }
 }
 
+// Redirect to long URL
+async function redirect(req, res) {
+  try {
+    const url_req = await url.findOne({ urlCode: req.params.code });
+
+    if (url_req) {
+      return res.redirect(url.longUrl);
+    } else {
+      return res.status(404).json('No URL found!');
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json('Server error');
+  }
+}
+
 // LINE Functions
 const quickReply = {
   items: [
@@ -69,6 +85,14 @@ const quickReply = {
       action: {
         type: 'camera',
         label: 'Open camera',
+      },
+    },
+    {
+      type: 'action',
+      action: {
+        type: 'uri',
+        label: 'View details',
+        uri: 'http://example.com/page/222',
       },
     },
   ],
@@ -133,6 +157,12 @@ module.exports = async function App(context) {
   }
 
   if (context.event.isText) {
+    if (context.event.text == 'url') {
+      await context.sendText('Paste your URL ^_^');
+      req = context.event.text;
+      let url = createShortUrl(req, res);
+      await context.sendText(url);
+    }
     await context.sendText(`received the text message: ${context.event.text}`, {
       quickReply,
     });
