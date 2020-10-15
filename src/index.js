@@ -107,7 +107,10 @@ const quickReply = {
 
 async function HandleFollow(context) {
   await context.sendText(
-    'Hello! I am Novibot. Tap on those any button to have fun!',
+    // 'Hello! I am Novibot. Tap on those any button to have fun!',
+    'Hello, are you Bryan?',
+    await delay(100, 'Happy Birthday, hmmm'),
+    await delay(200, 'It’s a splendid day for a splendid brother. Wishing you lots of love and happiness on the anniversary of the day you were born.'),
     {
       quickReply,
     }
