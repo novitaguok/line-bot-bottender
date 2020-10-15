@@ -76,6 +76,14 @@ const quickReply = {
     {
       type: 'action',
       action: {
+        type: 'message',
+        label: 'Say Hi 🙋‍♀️🙋‍♂️',
+        text: 'Hi',
+      },
+    },
+    {
+      type: 'action',
+      action: {
         type: 'cameraRoll',
         label: 'Send photo',
       },
@@ -92,14 +100,6 @@ const quickReply = {
       action: {
         type: 'location',
         label: 'Location',
-      },
-    },
-    {
-      type: 'action',
-      action: {
-        type: 'message',
-        label: 'Say Hi 🙋‍♀️🙋‍♂️',
-        text: 'Hi',
       },
     },
   ],
